@@ -1,0 +1,29 @@
+﻿@model CategoryViewModel
+
+@{
+    ViewData["Title"] = "ParentCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="">
+    <div class="container">
+        <div class="row my-5 gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Най-продавани продукти</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            @foreach (var item in @Model.SubCategories)
+            {
+            <div class="card bg-transparent border-0" style="width: 18rem;">
+                <img class="card-img-top" src="@Url.Content(item.ImageUrl)" alt="Card image cap">
+                <div class="card-body">
+                    <a class="card-text text-decoration-none " href="/Product/All/@item.Id">@item.Name</a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

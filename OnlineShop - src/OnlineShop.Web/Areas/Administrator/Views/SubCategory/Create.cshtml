@@ -1,0 +1,58 @@
+﻿@model CreateSubCategoryViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <section>
+                <form method="post" enctype="multipart/form-data" asp-controller="SubCategory" asp-action="Create">
+                    <h3 class="text-muted">Добави под категория</h3>
+                    <hr>
+                    <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+                        <ul>
+                            <li style="display:none"></li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control">
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description"></label>
+                        <input asp-for="Description" class="form-control">
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="KeyPartial"></label>
+                        <input asp-for="KeyPartial" class="form-control">
+                        <span class="text-danger" asp-validation-for="KeyPartial"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FormImage"></label>
+                        <input asp-for="FormImage" class="form-control">
+                        <span class="text-danger" asp-validation-for="FormImage"></span>
+                    </div>
+                    <div class="form-group pt-2">
+                        <select class="select-width" name="ParentId">
+                            <option value="" disabled="" selected="">-- Основна категория --</option>
+                            @if (Model.ParentCategories.Count != 0)
+                            {
+                                @foreach (var category in Model.ParentCategories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group pt-3">
+                        <button type="submit" class="btn btn-primary">Добави</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>

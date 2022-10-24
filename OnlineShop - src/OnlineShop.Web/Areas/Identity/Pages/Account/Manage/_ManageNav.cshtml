@@ -1,0 +1,31 @@
+﻿@inject SignInManager<ShopUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+@*<ul class="nav nav-pills nav-stacked">
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="./Index">Profile</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-page="./ChangePassword">Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins">External logins</a></li>
+    }
+    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+    <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a asp-page="./PersonalData">Personal data</a></li>
+</ul>*@
+
+
+<div class="p-3 py-5">
+    <p>Функции</p>
+    <div class="col-md-12">
+        <div class="list-group">
+            <a href="/Identity/Account/Manage/UserOrder" class="list-group-item list-group-item-action">
+                Поръчки
+            </a>
+            <a href="/Identity/Account/Manage/UserFactura" class="list-group-item list-group-item-action">Фактури</a>
+            <a href="user-favorite-products.html" class="list-group-item list-group-item-action">Любими</a>
+            <a href="user-product-return.html" class="list-group-item list-group-item-action">Връщане на продукт</a>
+            <a href="user-purchased-products.html" class="list-group-item list-group-item-action ">Закупени продукти</a>
+            <a href="/Identity/Account/Manage/ChangePassword" class="list-group-item list-group-item-action ">Промени паролата</a>
+        </div>
+    </div>
+</div>

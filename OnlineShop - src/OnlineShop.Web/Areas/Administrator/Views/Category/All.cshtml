@@ -1,0 +1,49 @@
+﻿@model ICollection<ParentCategoryViewModel>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="py-5">
+    <div class="container mobile-fondsize-11">
+        <div class="d-flex justify-content-between">
+            <h3>Основни категории</h3>
+            <a href="/Administrator/Category/Create" class="btn btn-outline-dark btn-sm"><i class="pe-2 fa-solid fa-circle-plus"></i>Създай категория</a>
+        </div>
+        <table class="table table-hover bg-light">
+            <thead>
+                <tr class="row">
+                    <th scope="col" class="col-3 d-flex justify-content-center">Номер</th>
+                    <th scope="col" class="col-4 d-flex justify-content-center">Име</th>
+                    <th scope="col" class="col-2 d-flex justify-content-center">Брой категории</th>
+                    <th scope="col" class="col-3 d-flex justify-content-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int count = 1;}
+                @foreach (var item in Model)
+                {
+                <tr class="row">
+                    <td class="col-3 d-flex justify-content-center">
+                       @count
+                    </td>
+                    <td class="col-4 d-flex justify-content-center">
+                        @item.Name
+                    </td>
+                    <td class="col-md-3 d-flex justify-content-around">
+                        <div class="mr-2">
+                            <a class="btn btn-primary btn-sm" href="/Administrator/Category/Edit/@item.Id">Промени</a>
+                        </div>
+                        <div class="mr-2">
+                            <a class="btn btn-outline-danger btn-sm" href="/Administrator/Category/Delete/@item.Id">Изтрий</a>
+                        </div>
+                    </td>
+                </tr>
+                    count++;
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+

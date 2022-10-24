@@ -1,0 +1,79 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    
+}
+
+<div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="text-center">Потребителска информация</h2>
+        </div>
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label asp-for="Username" class="labels"></label>
+                        <input asp-for="Username" type="text" class="form-control" placeholder="username" >
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="Input.Email" class="labels"></label>
+                        <input  asp-for="Input.Email" type="email" class="form-control" >
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="Input.PhoneNumber" class="labels"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" >
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="Input.FirstName"></label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="Input.LastName" class="labels"></label>
+                        <input asp-for="Input.LastName" type="text" class="form-control">
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>Адреси: </h5>
+                        <div class="p-3">
+                        <ul class="list-group">
+                           
+                            @foreach (var address in Model.Input.Addresses)
+                            {
+                                <li class="list-group-item">@address.Street</li>
+                            }
+                        </ul>
+                            </div>
+                        <label asp-for="Input.Country" class="labels"></label>
+                        <input asp-for="Input.Country" type="text" class="form-control">
+                        <span asp-validation-for="Input.Country" class="text-danger"></span>
+                        
+                        <label asp-for="Input.CityName" class="labels"></label>
+                        <input asp-for="Input.CityName" type="text" class="form-control">
+                        <span asp-validation-for="Input.CityName" class="text-danger"></span>
+                      
+                        <label asp-for="Input.PostCode" class="labels"></label>
+                        <input asp-for="Input.PostCode" type="text" class="form-control">
+                        <span asp-validation-for="Input.PostCode" class="text-danger"></span>
+                        
+                        <label asp-for="Input.Street" class="labels"></label>
+                        <input asp-for="Input.Street" type="text" class="form-control">
+                        <span asp-validation-for="Input.Street" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Тип</label>
+                        <input type="text" class="form-control" value="">
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                <button class="btn btn-primary profile-button" type="submit">Запази промените</button>
+            </div>
+            </form>
+    </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

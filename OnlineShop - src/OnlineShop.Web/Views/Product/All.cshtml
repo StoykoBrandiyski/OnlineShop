@@ -1,0 +1,65 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList;
+
+@model AllProductViewModel
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="">
+    <div class="container-fluid">
+        <div class="row my-5 gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Най-продавани продукти</h2>
+                    <input type="hidden" id="categoryId" name="categoryId" value="@Model.Id">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (!string.IsNullOrEmpty(Model.KeyPartial))
+            {
+                <partial name=@string.Format("~/Views/Product/Partials/{0}FilterPartial.cshtml", Model.KeyPartial) />
+            }
+
+            <div class="col">
+                <div class="bg-light row p-4 w-95">
+                    <select id="sort-filter" class="form-select w-25 custom-select">
+                        <option value="-1" selected>Сортирай по</option>
+                        <option value="news">Най-актуалните</option>
+                        <option value="Descending">Цена нискодящ ред</option>
+                        <option value="Order">Цена възходящ ред</option>
+                    </select>
+                </div>
+                <div id="container-products" class="row justify-content-center">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="card m-3" style="width: 15rem;">
+                            <img class="card-img-top" src="@item.ImageUrl">
+                            <div class="card-body">
+                                <a class="card-text text-decoration-none text-dark fw-bold" href="/Product/Details/@item.Id">@item.Name</a>
+                                <p class="border border-success border-2 px-1 mt-1">В наличност</p>
+                                <p class="text-danger fw-bold">@item.Price лв.</p>
+                                <a href="#"><i class="fa fa-heart-circle-plus"></i></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @Html.PagedListPager((IPagedList)Model.Products, page => Url.Action("All",
+                                                    new {
+                                                        PageNumber = page
+                                                    }),
+                                                    new PagedListRenderOptions
+                                                    {
+                                                        MaximumPageNumbersToDisplay = 5,
+                                                        LiElementClasses = new string[] { "page-item" },
+                                                        PageClasses = new string[] { "page-link" }
+                                                    })
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/js/productFilter.js"></script>

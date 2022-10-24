@@ -1,0 +1,95 @@
+﻿@model CreateOrderViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="py-4">
+    <div class="container">
+        @if (Model.OrderAddressesViewModel.Count == 0)
+        {
+            <p>Все още нямате добавени адреси във вашия профил.</p>
+        }
+        <form method="post" asp-controller="Order" asp-action="Create">
+            <div class="row shadow p-3 mb-5 bg-body rounde">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="col mt-2">
+                    <h4>Твойта информация</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <label asp-for="FullName"></label>
+                            <input asp-for="FullName" class="form-control" placeholder="Име и фамилия" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <label asp-for="PhoneNumber"></label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Телефон" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            @foreach (var address in Model.OrderAddressesViewModel)
+                            {
+                            <li class="list-group-item">
+                                <label>
+                                    <input asp-for="DeliveryAddressId" type="radio" value="@address.Id" checked />
+                                    @address.Street @address.Description, @address.CityName,  @address.CityPostcode
+                                </label>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col mt-2">
+                        <h4>Плащане</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Начин на плащане
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Наложен платеж
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="col mt-2">
+                            <h4>Доставчик</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Име: <span>Еконт Експресс</span></li>
+                                <li class="list-group-item">Очаквана дата: <span> 23.07.2022г.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-striped table-orders">
+                        <thead>
+                            <tr>
+                                <th scope="col">Продукт</th>
+                                <th scope="col">Количество</th>
+                                <th scope="col">Общо</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model.Products)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@product.ImageUrl" width="60">
+                                        <a href="/Product/Details/@product.Id">@product.Name</a>
+                                    </td>
+                                    <td>@product.Quantity</td>
+                                    <td>@product.TotalPrice лв.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input type="submit" class="m-2 btn btn-primary btn-lg btn-block" name="buy" value="Завърши поръчката">
+                </div>
+            </form>
+        </div>
+    </section>
+
+@section Scripts {
+      <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+}
+

@@ -1,0 +1,58 @@
+﻿@model AllSubParentCategoryViewModel
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="py-5">
+    <div class="container mobile-fondsize-11">
+        <div class="d-flex justify-content-between">
+            <h3>Под категории</h3>
+            <a asp-controller="SubCategory" asp-action="Create" class="btn btn-outline-dark btn-sm"><i class="pe-2 fa-solid fa-circle-plus"></i>Създай категория</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr class="row">
+                    <th scope="col" class="col-1 d-flex justify-content-center">#</th>
+                    <th scope="col" class="col-2 d-flex justify-content-center">Име</th>
+                    <th scope="col" class="col-3 d-flex justify-content-center">Описание</th>
+                    <th scope="col" class="col-2 d-flex justify-content-center">Kaтегория</th>
+                    <th scope="col" class="col-1 d-flex justify-content-center">Продукти</th>
+                    <th scope="col" class="col-3 d-flex justify-content-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int count = 1;}
+                @foreach (var category in Model.SubCategories)
+                {
+                <tr class="row">
+                    <td class="col-1 d-flex justify-content-center">
+                        @count
+                    </td>
+                    <td class="col-2 d-flex justify-content-center">
+                        @category.Name
+                    </td>
+                    <td class="col-3 d-flex justify-content-center">
+                        @category.Description
+                    </td>
+                    <td class="col-2 d-flex justify-content-center">
+                        @category.ParentCategoryName
+                    </td>
+                    <td class="col-1 d-flex justify-content-center">
+                        @category.ProductsCount
+                    </td>
+                    <td class="col-3 d-flex justify-content-around">
+                        <div class="mr-2">
+                            <a class="btn btn-primary btn-sm" href="/Administrator/SubCategory/Edit/@category.Id">Промени</a>
+                        </div>
+                        <div class="mr-2">
+                            <a class="btn btn-outline-danger btn-sm" href="/Administrator/SubCategory/Delete/@category.Id">Изтрий</a>
+                        </div>
+                    </td>
+                </tr>
+                    count++;
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineShop.Web</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/newStyle.css" />
+    <link rel="stylesheet" href="~/css/bootnavbar.css" />
+    <link rel="stylesheet" href="~/lib/owl_carousel/owl.carousel.css">
+    <link rel="stylesheet" href="~/lib/owl_carousel/owl.theme.default.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body class="d-flex flex-column h-100 bg-custom">
+    <main class="container-xl">
+        <header class="container-fluid p-3">
+            <div class="d-flex justify-content-between py-3 flex-wrap">
+                <a class="navbar-brand " href="/Home/Index"><img width="150" src="https://s13emagst.akamaized.net/layout/bg/images/logo//18/26930.svg"> </a>
+                <partial name="~/Views/Shared/Partials/_HeaderPartial.cshtml" />
+
+            </div>
+            <div class="col-md">
+                <form class="d-flex my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline my-2 my-sm-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </header>
+        <partial name="~/Views/Shared/Partials/_NavbarPartial.cshtml" />
+
+        @await Component.InvokeAsync(typeof(AdminNavbarComponent))
+
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+
+        <partial name="~/Views/Shared/Partials/_FooterPartial.cshtml" />
+
+    </main>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/bootnavbar.js"></script>
+
+    <script src="~/lib/owl_carousel/owl.carousel.js"></script>
+
+    <!-- Core theme JS-->
+    <script>
+        new bootnavbar();
+
+    </script>
+    <script type="text/javascript">
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 5,
+            nav: true,
+            autoWidth: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    loop: true
+                },
+                600: {
+                    items: 2,
+                    loop: true
+                },
+                1100: {
+                    items: 4,
+                    loop: true
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

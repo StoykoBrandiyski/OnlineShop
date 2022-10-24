@@ -1,0 +1,29 @@
+﻿@page
+@model UserOrderModel
+@{
+    ViewData["Title"] = "User Orders";
+}
+
+<div>
+    <table class="table table-striped table-orders">
+        <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Дата на създаване</th>
+                <th scope="col">Общо сума</th>
+                <th scope="col">Метод на плащане</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Input.Orders)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate.ToString()</td>
+                    <td>@order.TotalPrice лв.</td>
+                    <td>@order.PaymentType</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

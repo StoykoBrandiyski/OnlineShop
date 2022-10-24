@@ -1,0 +1,69 @@
+﻿@model IList<ShoppingCartProductsViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="shopping-cart dark">
+    <div class="container">
+        <div class="block-heading">
+            <h2>Моите продукти</h2>
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12 col-lg-9">
+                    @if (Model.Count == 0)
+                    {
+                        <h2 class="text-center fw-bold">Количката е празна</h2>
+                    }
+                    <div class="items">
+                        @foreach (var product in Model)
+                        {
+                            <div class="product">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img class="img-fluid mx-auto d-block image" src="@product.ImageUrl">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="info">
+                                            <div class="row">
+                                                <div class="col-md-4 product-name">
+                                                    <div class="product-name">
+                                                        <a href="#">@product.Name</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 price">
+                                                    <span>@product.Price</span>
+                                                </div>
+                                                <div class="col-md-3 quantity">
+                                                    <label for="quantity">Количество:</label>
+                                                    <input id="quantity" type="number" value="@product.Quantity" min="1" class="form-control quantity-input">
+                                                </div>
+                                                <div class="col-md-2 price">
+                                                    <span>@product.TotalPrice</span>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <a class="btn btn-outline-dark close-button" asp-controller="ShoppingCart" asp-action="Delete" asp-route-id="@product.Id">X</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-3">
+                    <div class="summary">
+                        <h3>Информация за поръчката:</h3>
+                        <div class="summary-item pb-3"><span class="text">Продукти:</span><span class="price">@(Model.Sum(x => x.TotalPrice))лв.</span></div>
+                        <div class="summary-item"><span class="text">Доставка</span><span class="price">5.99лв.</span></div>
+                        <a asp-controller="Order" asp-action="Create" class="m-2 btn btn-primary btn-lg btn-block">Поръчай</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

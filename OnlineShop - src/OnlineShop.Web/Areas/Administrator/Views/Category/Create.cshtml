@@ -1,0 +1,27 @@
+﻿@model ParentCategoryViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="/Administrator/Category/Create" novalidate="novalidate">
+                <h3 class="text-muted">Добави основна категория</h3>
+                <hr>
+                <div class="text-danger" asp-validation-summary="All" data-valmsg-summary="true"></div>
+                <div class="form-group">
+                    <label asp-for="Name" >Име</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-primary">Добави</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+

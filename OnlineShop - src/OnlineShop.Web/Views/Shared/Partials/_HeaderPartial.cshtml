@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ShopUser> SignInManager
+@inject UserManager<ShopUser> UserManager
+
+
+@*@await Component.InvokeAsync(typeof(ShoppingCartCounterViewComponent))*@
+
+<div class="d-flex justify-content-between">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p class="pe-2">Здравей,<span class="fw-bold">@User.Identity.Name</span></p>
+    }
+    else
+    {
+        <p class="pe-2">Добре дошли<span class="fw-bold"></span></p>
+    }
+
+    @if (User.IsInRole(UserRole.Admin.ToString()))
+    {
+        <a class="btn btn-outline-dark m-1 p-1 " href="/Administrator">
+            <i class="fa-solid fa-gear"></i>
+            <span>Админ панел</span>
+        </a>
+    }
+    else
+    {
+        <a class="nav-link text-dark " href="/ShoppingCart/Index">
+            <i class="bi-cart-fill"></i>
+            <span>Количка</span>
+        </a>
+    }
+
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/Identity/Account/Manage">Моят профил</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user-orders.html">Поръчки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user-favorite-products.html">Любими</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark m-1 p-1" href="/Identity/Account/Logout">
+                                <i class="bi bi-person"></i> <span>Изход</span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark m-1 p-1" href="/Identity/Account/Register">
+                                <i class="bi bi-person"></i> <span>Регистрация</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark m-1 p-1" href="/Identity/Account/Login">
+                                <i class="bi bi-person"></i> <span>Влез</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

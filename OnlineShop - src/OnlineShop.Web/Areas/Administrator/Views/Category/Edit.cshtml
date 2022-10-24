@@ -1,0 +1,25 @@
+﻿@model ParentCategoryViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="/Administrator/Category/Edit" asp-route-id="@Model.Id">
+                <h3 class="text-muted">Добави основна категория</h3>
+                <hr>
+                <div class="text-danger" asp-validation-summary="All" data-valmsg-summary="true"></div>
+                <div class="form-group">
+                    <label asp-for="@Model.Name">Име</label>
+                    <input asp-for="@Model.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-primary">Добави</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

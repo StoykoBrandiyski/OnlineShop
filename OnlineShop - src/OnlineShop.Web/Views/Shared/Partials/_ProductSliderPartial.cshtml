@@ -1,0 +1,55 @@
+﻿@model IndexViewModel
+
+<section class="">
+    <div class="container">
+        <div class="row my-5 gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Най-продавани продукти</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-auto owl-carousel owl-theme">
+            @foreach (var product in @Model.Products)
+            {
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="~/images/product-1.jpg" alt="" class="img-fluid d-block mx-auto">
+                    <span class="heart-icon">
+                        <i class="far fa-heart"></i>
+                    </span>
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <a href="/Product/Details/@product.Id" class="nav-link text-light">
+                                <i class="fa fa-binoculars"></i> View
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info p-3">
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">@product.Name</a>
+                    <span class="product-price">@product.Price lv</span>
+                    <div class="rating d-flex mt-1">
+                        <span>
+                            <i class="fa fa-star"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-star"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-star"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-star"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-star"></i>
+                        </span>
+                        <span>(25 reviews)</span>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

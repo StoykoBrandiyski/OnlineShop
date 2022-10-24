@@ -1,0 +1,56 @@
+﻿@using OnlineShop.Web.ViewModels.Administrator.Home;
+@model AdminNavbarViewModel
+
+<nav class="navbar navbar-expand-lg mt-3 navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-truck"></i>
+                        Поръчки 
+                        @if(Model.UnprocessOrdersCount != 0)
+                        {
+                            <sup>@Model.UnprocessOrdersCount</sup>
+                        }
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item fw-bold" href="">Моите поръчки <sup>4</sup></a></li>
+                        <li><a class="dropdown-item" href="#">История</a></li>
+                        <li><a class="dropdown-item" href="#">Доставчици</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Категории
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/Administrator/Category/All">Основни категории</a></li>
+                        <li><a class="dropdown-item" href="/Administrator/SubCategory/All">Под категории</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Продукти
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/Administrator/Product/All">Всички продукти</a></li>
+                        <li><a class="dropdown-item" href="/Administrator/Product/AllHide">Скрити продукти</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-users"></i> Потребители <sup>2</sup>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Заявка за партньорство</a></li>
+                        <li><a class="dropdown-item fw-bold" href="#">Партньори <sup>3</sup></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

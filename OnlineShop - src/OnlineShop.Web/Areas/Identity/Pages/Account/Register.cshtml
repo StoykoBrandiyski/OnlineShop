@@ -1,0 +1,50 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="py-5">
+        <!-- Contact form-->
+        <div class="bg-light py-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Регистрация</h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form  asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <!-- Username input-->
+                        <div class="mb-3">
+                            <input asp-for="Input.Email" class="form-control" placeholder="Поща" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.FirstName" class="form-control" placeholder="Име" />
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.LastName" class="form-control" placeholder="Фамилия" />
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.Password" class="form-control" placeholder="Парола" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Повтори паролата" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <!-- Submit Button-->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Регистрация</button>
+                        </div>
+                    </form>
+                    <p class="py-3">Имаш акаунт ? <a href="/Identity/Account/Login">Вход</a></p>
+                </div>
+            </div>
+        </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
